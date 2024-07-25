@@ -33,6 +33,8 @@ export default function Login() {
                 <input type="email" name="gmail" id="gmail" onChange={(e) => setUserDetails(e.target.value)} placeholder='Email Address' required />
                 <button type="submit">Continue</button>
                 <p>Don't have an account<Link to="/signup">SignUp</Link></p>
+
+                <button type='submit'>Continue with Google</button>
             </form>
         </Fragment>
     )

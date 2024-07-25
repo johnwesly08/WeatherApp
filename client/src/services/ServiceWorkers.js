@@ -16,9 +16,22 @@ export const signUpWithGmail = async (gmail) => {
 // USER LOGIN WITH EMAIL
 export const getUserDetails = async (gmail) => {
     try {
-        const response = await Axios.post(`${BASE_URL}/login`, { gmail, type: 'ownapp'});
+        const response = await Axios.post(`${BASE_URL}/login`, { gmail, type: 'google'});
         return response.data;
     } catch (error) {
         throw new error('Error during Sign Up. Please Try Again');
     }
 }
+
+export const handleGoogleSignUp = async (token) => {
+    try {
+      const response = await Axios.post(`${API_URL}/auth/google`, {
+        token,
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error during Google sign up:', error);
+      throw new Error('Error during Google sign up. Please try again.');
+    }
+  };
+  

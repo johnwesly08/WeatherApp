@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
-import { signUpWithGmail } from '../services/ServiceWorkers';
 import { Link, useNavigate } from 'react-router-dom';
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google"
+import { signUpWithGmail, signUpWithGoogle } from '../services/ServiceWorkers';
 
 export default function SignUp() {
     const initialState = { gmail: "" };
@@ -24,6 +25,16 @@ export default function SignUp() {
             }).catch((e) =>
                 console.log(e.message)
             );
+
+
+        const handleGoogleSignUp = async (tokenResponse) => {
+            try {
+                const response = await signUpWithGoogle(tokenResponse.credential);
+                console.log('User signed up with Google:', response);
+            } catch (error) {
+                setError(error.message);
+            }
+        };
     }
 
     return (
@@ -34,6 +45,21 @@ export default function SignUp() {
                 <button type="submit">Continue</button>
                 <p>Already have an account<Link to="/login">Login</Link></p>
             </form>
+
+            <GoogleOAuthProvider clientId='#'>
+                <div>
+                    <form onSubmit={handleGoogleSignUp}>
+                        <input type="email" name="ggmail" id="ggmail" onChange={(e) => setUserDetails(e.target.value)} placeholder='Enter your Email' required />
+                        <button type="submit">Sign Up</button>
+                    </form>
+
+
+                    <GoogleLogin
+                        onSuccess={handleGoogleSignUp}
+                        onError={(error) => console.error('Error with Google login:', error)}
+                    />|
+                </div>
+            </GoogleOAuthProvider>
         </Fragment>
     )
 }
