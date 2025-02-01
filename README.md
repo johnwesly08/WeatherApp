@@ -1,6 +1,6 @@
 # Weather App 🌤️
 
-This is a weather forecasting application built using the MERN stack (MongoDB, Express, React, Node.js). The app fetches real-time weather data and presents it to the user in a clean, responsive interface, allowing users to search for weather information by city and see details like temperature, humidity, wind speed, and more
+This is a weather forecasting application built using the MERN stack (MongoDB, Express, React, Node.js). The app fetches real-time weather data and presents it to the user in a clean, responsive interface, allowing users to search for weather information by city and see details like temperature, humidity, wind speed, and more.
 
 ## Features
 
